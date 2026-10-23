@@ -1,150 +1,60 @@
-# Angular Advanced - Claude Code Configuration
+# CLAUDE.md
 
-## Repository Purpose & Structure
+Training materials, demos and infrastructure for Advanced Angular Development. It is a **teaching repository**, not a production application, designed to demonstrate Angular concepts through hands-on examples.
 
-This repository contains training materials, demos, and infrastructure for Advanced Angular Development. It is a **teaching repository** - not a production application - designed to demonstrate Angular concepts through hands-on examples.
+Author with the global `create-class` skill, build slides with the global `create-pptx` skill, and run the `brand-voice-code` skill after writing or editing a readme or guide.
 
-### Key Directories
+## Layout
 
-- **`demos/`** - Module-organized demonstrations (12 modules, each in a separate folder, e.g., `demos/02-signals/ng-signals`)
-- **`labs/`** - Step-by-step lab instructions and scripts for students
+```text
+demos/readme.md                      class readme: Duration, Audience, Prerequisites, Modules, Schedule
+demos/NN-<module>/readme.md          module teaching overview
+demos/NN-<module>/<app>/             the module's Angular demo app: db.json, public/markdown/, src/app/demos/
+demos/NN-<module>/pptx/              slide specs NN-MM-<slug>.md, images/, topics.json, NN-<module>.pptx
+demos/pptx/                          00 class deck, modules.json, days.json, images/
+labs/readme.md                       lab index: module, Angular focus, what gets built
+labs/lab-NN/                         readme.md, lNN-secrets-vault-starter/, lNN-secrets-vault-solution/
+labs/secrets-vault-mcp/              the given Secrets and Document Vault API
+db/secrets-vault-mcp/                its schema, data and delta scripts
+design-system/                       the workbench design tokens
+setup/                               prerequisites and install
+tasks/                               lessons.md, todo.md for a running plan
+```
 
-Always start applications from their respective project folders, not the repository root.
+Module and lab numbers are two-digit and gapless, in teaching order: 13 modules from `demos/01-agentic-dev` to `demos/13-oauth`, 12 labs from `labs/lab-01` to `labs/lab-12`.
 
-## Angular Standards
+## Brand Voice
 
-- **Angular Version**: 22.x or later
-- **Architecture**: Standalone components (default - do NOT set `standalone: true` explicitly)
-- **Change Detection**: OnPush is the v22 default - never write `changeDetection` explicitly
-- **Dependency Injection**: Always use `inject()` function - never constructor parameters
-- **Testing**: Vitest (native Angular 22 support via `@angular/build`)
+Every `readme.md` and guide under `demos/` and `labs/` follows `.claude/skills/brand-voice-code/references/rules.md`. Check a file against it after writing or significantly editing it.
 
-## Important Rules
+## Where the detail lives
 
-- The AI NEVER commits. Do not stage, commit, or push under any circumstance, and do not mention, offer, or ask anything commit-related. Leave all changes as uncommitted working-tree edits for the user to handle.
+| Topic | Lives in |
+| --- | --- |
+| Angular deviations from `angular-conventions`, demo app structure | `.claude/rules/angular.md` |
+| Secrets and Document Vault lab workbench | `.claude/rules/lab-workbench.md` |
+
+## Harness
+
+Orchestration runs in the integrations-marketplace mods (`D:\git-projects\integrations-marketplace`), and the house rules in `~/.claude/CLAUDE.md` apply as they stand; this file repeats neither.
+
+- `subagent-delegation-plugin`: routes work to the owning agent (owners in `.claude/rules/`), sends fact gathering to the Haiku fact-gatherer, bounds every brief, keeps the agent ledger.
+- `learn-loop-plugin`: runs `claude-learn` once a session goes idle.
+- `report-plugin`: starts a status cron when an agent or workflow runs long.
+- `intent-guard-plugin`: holds destructive commands nobody asked for.
+- `ask-check-plugin`: stops questions the conversation already settled and unrequested findings.
+- `write-gate-plugin`: holds a writer's finish until the humanize and marketing-psychology passes ran.
+- `harness-plugin`: guards this file's shape, halts a run on `AGENT_STOP`, redirects it with `STEER.md`; `fix-constitution` realigns the repo.
+
+## Hard Rules
+
+- Never edit anything under `labs/secrets-vault-mcp/` or `db/secrets-vault-mcp/`: the backend is given.
 - Write clean code. No comments. Do not over-engineer.
-- Never use PowerShell for Angular code refactoring - use bash.
-- Do not write docs unless asked. If asked, be concise and to the point.
-- Use Angular CLI for scaffolding: `ng generate component`, `ng generate service`, etc.
-- Run apps from their project subdirectory, not the repo root.
+- Docs, when asked for, are concise and to the point.
 
-## Component Pattern
+## Working Method
 
-```typescript
-import { Component, inject, input, output, computed } from '@angular/core';
-
-@Component({
-  selector: 'app-example',
-  template: `
-    @if (loading()) {
-      <p>Loading...</p>
-    } @else {
-      @for (item of items(); track item.id) {
-        <span>{{ item.name }}</span>
-      }
-    }
-  `,
-})
-export class ExampleComponent {
-  private service = inject(ExampleService);
-
-  items = input.required<Item[]>();
-  loading = input(false);
-  selected = output<Item>();
-}
-```
-
-## Anti-Patterns (Never Use)
-
-| Anti-pattern | Modern Replacement |
-|---|---|
-| `@Input()` / `@Output()` decorators | `input()` / `output()` signals |
-| `*ngIf` / `*ngFor` / `*ngSwitch` | `@if` / `@for` / `@switch` |
-| Constructor injection | `inject()` function |
-| `async` pipe + Observable for HTTP | `httpResource()` |
-| `toSignal(http.get(...))` | `httpResource()` |
-| `BehaviorSubject` for local state | `signal()` |
-| `subscribe()` in components | `toSignal()` or `resource()` |
-| `ngClass` / `ngStyle` | `[class.x]` / `[style.x]` |
-| `CommonModule` import | Remove - standalone by default |
-| `NgModules` for feature organization | Standalone + lazy routes |
-| `@HostBinding` / `@HostListener` | `host: {}` object in `@Component` |
-| Explicit `changeDetection:` | Omit it - OnPush is the v22 default |
-
-## State Management
-
-```typescript
-// Local state
-readonly count = signal(0);
-readonly doubled = computed(() => this.count() * 2);
-
-// HTTP data
-readonly users = httpResource<User[]>('/api/users');
-
-// Complex app state - NgRx Signal Store
-// withState, withComputed, withMethods
-```
-
-## Testing Pattern (Vitest)
-
-```typescript
-import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { TestBed } from '@angular/core/testing';
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
-
-describe('MyComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [MyComponent],
-      providers: [
-        { provide: MyService, useValue: { getData: vi.fn() } }
-      ]
-    }).compileComponents();
-  });
-
-  it('sets signal input and detects changes', () => {
-    const fixture = TestBed.createComponent(MyComponent);
-    fixture.componentRef.setInput('data', mockData);
-    fixture.detectChanges();
-    expect(fixture.nativeElement.textContent).toContain('expected');
-  });
-});
-```
-
-## Demo Module Structure
-
-Each demo app follows this pattern:
-- `db.json` - Demo catalog with url, title, teaches, topic, sortOrder, md fields
-- `demo.routes.ts` - Route definitions
-- `public/markdown/<name>.md` - Markdown guide for each demo
-- `src/app/demos/samples/<name>/` - Component implementation
-
-## Workflows
-
-See memory files for detailed workflow patterns:
-- `memory/angular-patterns.md` - Detailed Angular v22+ patterns
-- `memory/testing-patterns.md` - Vitest testing patterns
-- `memory/workflows.md` - Common task workflows (ng-update, check-demos, describe-module)
-
-## Secrets and Document Vault
-
-The labs build one Angular workbench against the Secrets and Document Vault API. The backend
-is given and is never edited from a lab.
-
-| Fact | Value |
-|------|-------|
-| Lab app | `labs/lab-NN/lNN-secrets-vault-starter` |
-| API base | `/api`, proxied to `http://localhost:5093` by the app's `proxy.conf.json` |
-| Domain source | the C# records in `labs/secrets-vault-mcp/Contracts/` |
-| Design tokens | `design-system/secrets-and-document-vault/MASTER.md`, mirrored in the app's `src/styles.css` |
-| Lists | `GET /api/lists` returns `listId`, `name`, `description`, `type`, `secretCount` |
-| List type | `1` is Secrets, `2` is Vault |
-
-## Rules for the lab workbench
-
-- Derive every TypeScript interface from the matching C# record. Do not invent a field.
-- Style from the CSS custom properties in the app's `src/styles.css`. A raw hex value in a
-  component stylesheet is a defect.
-- Scaffold with `ng generate`, never by hand.
-- Do not edit anything under `labs/secrets-vault-mcp/` or `db/secrets-vault-mcp/`.
+- **Plan first** for anything non-trivial (3+ steps or an architectural decision): write it to `tasks/todo.md`, check in, then track progress there.
+- **Verify before reporting done.** Run the check, show the command and its output. A claim is not a receipt.
+- **Review `tasks/lessons.md`** at session start; `claude-learn`'s `instruction-audit` gate prunes it and this file.
+- **Simplicity first**: minimal diff, root causes over patches, no rewrite to fix a typo.

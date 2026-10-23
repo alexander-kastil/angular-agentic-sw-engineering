@@ -37,7 +37,9 @@
       "Bash(ls -1 *.md)",
       "Bash(npm -v)",
       "Bash(docker --version)",
-      "Bash(npx -y @angular/cli@latest version)"
+      "Bash(npx -y @angular/cli@latest version)",
+      "Bash(git -C /d/git-classes/angular-agentic-sw-engineering remote -v)",
+      "Bash(gh repo *)"
     ],
     "additionalDirectories": [
       "C:\\Users\\AlexanderKastil\\.claude\\skills\\ng-update"

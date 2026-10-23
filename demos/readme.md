@@ -1,4 +1,4 @@
-# Angular Agentic Software Engineering
+# Angular Agentic Software Engineering with Claude Code & GitHub Copilot
 
 This workshop is for experienced Angular developers who want to master modern Angular development and learn to work with AI agents as a natural part of their daily workflow. Over twelve modules you will build real Angular v22 applications using standalone components, signal-based state, signal queries, and inject-based dependency injection throughout. Every concept is introduced through working demos that you can run, extend, and experiment with.
 
@@ -24,46 +24,51 @@ class time in total.
 
 ## Schedule
 
-Every module is taught and then practised. Teaching is the concept prose in the module readme
-plus the demos walked through live; the lab is the hands-on build that carries the app forward
-one step. Lab minutes are a ceiling, not a target: a lab that overruns steals the next module.
-
-| Module | Demos | Teaching | Lab | Total |
-|---|---|---|---|---|
-| [01 Agentic Angular Software Engineering](./01-agentic-dev/) | 6 | 75 | 40 | 115 |
-| [02 Mastering Signals](./02-signals/) | 16 | 135 | 40 | 175 |
-| [03 Component Composition and Signal Queries](./03-components/) | 14 | 115 | 35 | 150 |
-| [04 Signal Forms](./04-signal-forms/) | 22 | 150 | 35 | 185 |
-| [05 RxJS Where It Still Matters](./05-reactive/) | 8 | 70 | 30 | 100 |
-| [06 State Management with NgRx SignalStore](./06-ngrx-signals/) | 13 | 110 | 35 | 145 |
-| [07 Advanced Routing and App Initialization](./07-routing-app-init/) | 18 | 130 | 35 | 165 |
-| [08 Advanced Testing with Vitest and Playwright](./08-testing/) | 19 | 130 | 35 | 165 |
-| [09 WebMCP, the Agentic Web](./09-webmcp/) | 7 | 70 | 30 | 100 |
-| [10 Optimization and Compliance](./10-optimize-compliance/) | 15 | 110 | 30 | 140 |
-| [11 Hybrid Rendering and Hydration](./11-ssr/) | 7 | 65 | 30 | 95 |
-| [12 Agentic Angular DevOps](./12-agentic-devops/) | 4 | 100 | 35 | 135 |
-| **Total** | **149** | **1260** | **410** | **1670** |
-
-Teaching time tracks demo count, with two deliberate exceptions. Module 01 gets more than its six
-demos suggest because the harness it sets up is used by every module after it. Module 12 gets far
-more than its four demos suggest because provisioning a host, waiting on DNS and watching a
-certificate issue are slow in wall-clock time whatever the demo count says.
-
-The 85 minutes between the 1670 allocated and the 1755 available are the buffer, and they sit on
-the last morning where overruns actually land.
-
-### Day plan
-
-| Day | Blocks |
-|---|---|
-| 1 | Welcome and environment setup (30), Module 01 (115), Module 02 (175), Module 03 teaching begins (70) |
-| 2 | Module 03 finishes teaching and runs its lab (80), Module 04 (185), Module 05 (100), Module 06 teaching begins (25) |
-| 3 | Module 06 finishes (120), Module 07 (165), Module 08 teaching begins (105) |
-| 4 | Module 08 finishes (60), Module 09 (100), Module 10 (140), Module 11 teaching begins (90) |
-| 5 | Module 11 finishes (5), Module 12 (135), wrap-up (15), buffer (40) |
-
-Modules 03, 06, 08 and 11 split across a day boundary. Each split falls between the teaching and
-the lab, so a day never ends mid-build and no lab is interrupted by a night.
+| Day | Clock          | Length | Deliverable                                                                               | Description                                                                                                                                                                                                                     |
+| --- | -------------- | ------ | ----------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | 09:00 to 09:30 | 30m    | Welcome and environment setup                                                             |                                                                                                                                                                                                                                 |
+| 1   | 09:30 to 10:45 | 1h 15m | [Agentic Angular Software Engineering](./01-agentic-dev/)                                 | Angular CLI MCP server, harness files, Angular agent skills, the Angular expert subagent, hooks and quality gates (6 demos)                                                                                                     |
+| 1   | 10:45 to 11:00 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 1   | 11:00 to 11:40 | 40m    | [Lab: Build the Secrets and Document Vault Workbench](../labs/lab-01/readme.md)           | Give the agent the repository: MCP servers, harness files, a design system, a subagent and a hook, then run the five-list workbench                                                                                             |
+| 1   | 11:40 to 12:40 | 1h 00m | Lunch                                                                                     |                                                                                                                                                                                                                                 |
+| 1   | 12:40 to 14:55 | 2h 15m | [Mastering Signals](./02-signals/)                                                        | signal(), computed(), effect(), inputs, model(), linkedSignal, httpResource, resource chain, debounced(), @Service and injectAsync, the DevTools signal graph (16 demos)                                                        |
+| 1   | 14:55 to 15:10 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 1   | 15:10 to 15:50 | 40m    | [Lab: Load the Secrets of a List with Signals](../labs/lab-02/readme.md)                  | Selection as state, lists that load themselves, a debounced search and masked values, all in signals                                                                                                                            |
+| 1   | 15:50 to 17:00 | 1h 10m | [Component Composition and Signal Queries](./03-components/)                              | Template syntax and control flow, signal queries, content projection, directive composition, programmatic components, resource() and @defer, @angular/aria, agent-driven refactoring (14 demos)                                 |
+| 2   | 09:00 to 09:45 | 45m    | [Component Composition and Signal Queries (continued)](./03-components/)                  | Remaining topics (14 demos)                                                                                                                                                                                                     |
+| 2   | 09:45 to 10:20 | 35m    | [Lab: Compose the Workbench from Accessible Components](../labs/lab-03/readme.md)         | Split the page into a resizable two-pane workbench built on @angular/aria, with version history loaded on request                                                                                                               |
+| 2   | 10:20 to 10:35 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 2   | 10:35 to 13:05 | 2h 30m | [Signal Forms](./04-signal-forms/)                                                        | Form basics and fields, validators including validateHttp and validateAsync, error handling with isSignalErrorState, arrays and dynamic forms, AI-written tests (22 demos)                                                      |
+| 2   | 13:05 to 14:05 | 1h 00m | Lunch                                                                                     |                                                                                                                                                                                                                                 |
+| 2   | 14:05 to 14:40 | 35m    | [Lab: Edit a Secret with a Signal Form](../labs/lab-04/readme.md)                         | Turn the detail pane into an editable signal form with a server-side name check and one PUT on save                                                                                                                             |
+| 2   | 14:40 to 14:55 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 2   | 14:55 to 16:05 | 1h 10m | [RxJS Where It Still Matters](./05-reactive/)                                             | Subscribe, stream and signal, flattening and combining strategies, error handling and custom operators, signal interop, rxResource, agent-assisted migration (8 demos)                                                          |
+| 2   | 16:05 to 16:35 | 30m    | [Lab: Upload, Export and Retry with RxJS](../labs/lab-05/readme.md)                       | A file upload with live progress, a CSV export and one retry operator shared by every risky call                                                                                                                                |
+| 2   | 16:35 to 17:00 | 25m    | [State Management with NgRx SignalStore](./06-ngrx-signals/)                              | withState, withComputed, withMethods, withEntities, store composition, resource extensions and the events plugin (13 demos)                                                                                                     |
+| 3   | 09:00 to 10:25 | 1h 25m | [State Management with NgRx SignalStore (continued)](./06-ngrx-signals/)                  | Remaining topics (13 demos)                                                                                                                                                                                                     |
+| 3   | 10:25 to 10:40 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 3   | 10:40 to 11:15 | 35m    | [Lab: Replace the Scattered Signals with a SignalStore](../labs/lab-06/readme.md)         | Move the state of three components into one SecretsStore assembled from three features                                                                                                                                          |
+| 3   | 11:15 to 13:25 | 2h 10m | [Advanced Routing and App Initialization](./07-routing-app-init/)                         | provideAppInitializer with injectAsync, functional guards, HTTP interceptors, error handling, signal-based resolvers, route inputs, animate.enter and animate.leave, view transitions, route-driven SignalStore (18 demos)      |
+| 3   | 13:25 to 14:25 | 1h 00m | Lunch                                                                                     |                                                                                                                                                                                                                                 |
+| 3   | 14:25 to 15:00 | 35m    | [Lab: Put the Workbench State in the URL](../labs/lab-07/readme.md)                       | Route parameters for the selected list and open secret, a guard, an interceptor and a resolver that make deep links work                                                                                                        |
+| 3   | 15:00 to 15:15 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 3   | 15:15 to 17:00 | 1h 45m | [Advanced Testing with Vitest and Playwright](./08-testing/)                              | Karma to Vitest migration, Vitest fundamentals, signal input, form and store tests, zoneless async testing, Playwright, agent-written specs proven by mutation (19 demos)                                                       |
+| 4   | 09:00 to 09:25 | 25m    | [Advanced Testing with Vitest and Playwright (continued)](./08-testing/)                  | Remaining topics (19 demos)                                                                                                                                                                                                     |
+| 4   | 09:25 to 10:00 | 35m    | [Lab: Let the Agent Write the Specs and Prove Them by Mutation](../labs/lab-08/readme.md) | Agent-written specs for the fragile parts, a Playwright run against the real API, and deliberate breakage to check the specs                                                                                                    |
+| 4   | 10:00 to 10:15 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 4   | 10:15 to 11:25 | 1h 10m | [WebMCP - The Agentic Web](./09-webmcp/)                                                  | A counterpart page for the agent, signals, components, signal forms and SignalStore methods as tools, navigation tools, end-to-end tool tests (7 demos)                                                                         |
+| 4   | 11:25 to 11:55 | 30m    | [Lab: Expose the Workbench as Agent Tools](../labs/lab-09/readme.md)                      | Expose the store, router and form as agent tools, and choose the short list of tools the agent must never get                                                                                                                   |
+| 4   | 11:55 to 12:55 | 1h 00m | Lunch                                                                                     |                                                                                                                                                                                                                                 |
+| 4   | 12:55 to 14:45 | 1h 50m | [Optimization and Compliance](./10-optimize-compliance/)                                  | Lighthouse and Core Web Vitals, Rolldown bundle optimization and budgets, @defer triggers, zoneless and DevTools profiling, virtual scrolling, image optimization, WCAG 2.2 AA, compliance gates on the pull request (15 demos) |
+| 4   | 14:45 to 15:00 | 15m    | Break                                                                                     |                                                                                                                                                                                                                                 |
+| 4   | 15:00 to 15:30 | 30m    | [Lab: Measure the Workbench and Gate What You Fixed](../labs/lab-10/readme.md)            | Measure the bundle, a list of two thousand secrets and the accessibility of the masked control, fix the findings, and gate the pull request                                                                                     |
+| 4   | 15:30 to 16:35 | 1h 05m | [Hybrid Rendering and Hydration](./11-ssr/)                                               | Server routes with RenderMode and getPrerenderParams, Express 5 with AngularNodeAppEngine, incremental hydration and triggers, transfer cache with httpResource, measured CSR versus SSR delta (7 demos)                        |
+| 4   | 16:35 to 17:00 | 25m    | Buffer                                                                                    |                                                                                                                                                                                                                                 |
+| 5   | 09:00 to 09:30 | 30m    | [Lab: Choose a Render Mode per Route](../labs/lab-11/readme.md)                           | Add SSR, decide the render mode for each route, and prove the choice by reading the HTML off the wire                                                                                                                           |
+| 5   | 09:30 to 11:10 | 1h 40m | [Agentic Angular DevOps](./12-agentic-devops/)                                            | The deployment agent with allowlists and manifest, bootstrapping and hardening an Ubuntu box, multi-stage containers behind Caddy, DNS before the first ACME attempt, Core Web Vitals and SEO loop (4 demos)                    |
+| 5   | 11:10 to 11:45 | 35m    | [Lab: Deploy the Workbench to an Ubuntu Box over SSH](../labs/lab-12/readme.md)           | Ship both images over SSH, put a Caddy edge with TLS in front of the API and the app, and hand the redeploy loop to an agent                                                                                                    |
+| 5   | 11:45 to 12:00 | 15m    | Wrap-up                                                                                   |                                                                                                                                                                                                                                 |
+| 5   | 12:00 to 12:15 | 15m    | Buffer                                                                                    |                                                                                                                                                                                                                                 |
 
 ## Audience
 

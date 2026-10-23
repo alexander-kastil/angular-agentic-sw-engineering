@@ -1,4 +1,4 @@
-# Angular Agentic Software Engineering
+# Angular Agentic Software Engineering with Claude Code & GitHub Copilot
 
 Companion Material for Class Delivery by [Alexander Kastil](https://www.integrations.at/kontakt-impressum.aspx)
 

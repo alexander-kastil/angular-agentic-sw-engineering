@@ -16,12 +16,12 @@ case "$file" in
   *) exit 0 ;;
 esac
 
-# Anti-patterns from CLAUDE.md that the compiler accepts and the course rejects.
+# Anti-patterns from the angular-conventions skill that the compiler accepts and the course rejects.
 patterns='\*ngIf|\*ngFor|\*ngSwitch|@Input\(\)|@Output\(\)|ngClass|ngStyle|@HostBinding|@HostListener|standalone:[[:space:]]*true'
 
 hits="$(printf '%s' "$payload" | grep -oE "$patterns" | sort -u | tr '\n' ' ')"
 if [ -n "$hits" ]; then
-  echo "Legacy Angular API in $file: $hits. See the anti-pattern table in CLAUDE.md." >&2
+  echo "Legacy Angular API in $file: $hits. See the Defaults table of the angular-conventions skill." >&2
   # Exit 2 blocks the tool call and returns stderr to the agent.
   exit 2
 fi
